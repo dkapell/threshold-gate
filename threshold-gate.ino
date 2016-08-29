@@ -1,6 +1,8 @@
 #include <Wire.h>
 #include "thresholdGate.h"
 
+// Main Countdown Timer
+long countdownTimer = 0;
 
 void setup()
 {
@@ -21,11 +23,18 @@ void setup()
   setInput(PIN_HQ_PAUSE);
   setInput(PIN_OPEN);
   setInput(PIN_CLOSE);
-  
+  Serial.begin(9600);
+
+  timerSetMins(1);
+  timerStart();
 }
 
 void loop()
 {
-
+  readButtons(); // check the state of all buttons
   runState(); // Run the state machine
+  countdown(); // Run the countdown timer
+  if (countdownTimer < 1000*10){
+    timerAdd(30);
+  }
 }

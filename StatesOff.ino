@@ -8,7 +8,7 @@ void stateInitial(){
   
   //Transistion out after 3 seconds
   if ((millis() - stateTimer) > 3000){
-    changeState(STATE_DEFAULT);  
+    changeState(STATE_GATE_OFF);  
   }
 }
 /* Gate Off

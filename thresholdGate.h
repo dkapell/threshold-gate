@@ -28,3 +28,12 @@
 #define PIN_OPEN 11
 #define PIN_HQ_PAUSE 12
 #define PIN_CLOSE 13
+
+// Buttons
+#define BTN_RESET 0
+#define BTN_ADD_MIN 1
+#define BTN_SUB_MIN 2
+#define BTN_PAUSE 3
+#define BTN_OPEN 4
+#define BTN_HQ_PAUSE 5
+#define BTN_CLOSE 6
