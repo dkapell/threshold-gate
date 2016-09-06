@@ -4,9 +4,9 @@ long timerLast = 0;
 long oldSeconds;
 
 // Explicitly set a timer
-void timerSetMins(long mins){
-  countdownTimer = mins * 60 * 1000;
-  oldSeconds = mins * 60;
+void timerSetSeconds(long seconds){
+  countdownTimer = seconds * 1000;
+  oldSeconds = seconds;
 }
 
 // Add a number of seconds to the timer
@@ -44,21 +44,42 @@ void countdown(void){
     timerLast = now;
   }
   long seconds = countdownTimer / 1000;
-  if (oldSeconds != seconds) { 
-    byte highMins = countdownTimer / 1000 / 60 / 10;
-    byte lowMins = countdownTimer / 1000 / 60 % 10;
-    byte highSecs = (countdownTimer / 1000) % 60 / 10;
-    byte lowSecs = (countdownTimer / 1000) % 60 % 10;
-    Serial.print(highMins);
-    Serial.print(lowMins);
-    Serial.print(":");
-    Serial.print(highSecs);
-    Serial.println(lowSecs);
-    
-   // TODO Display current time on the i2c backpack
-
+  if (oldSeconds != seconds) {
+    displayTime(seconds);
+    printTime(seconds);
   } 
   oldSeconds = seconds;
   
  }
+
+
+void printTime(long seconds){
+  byte highMins = countdownTimer / 1000 / 60 / 10;
+  byte lowMins = countdownTimer / 1000 / 60 % 10;
+  byte highSecs = (countdownTimer / 1000) % 60 / 10;
+  byte lowSecs = (countdownTimer / 1000) % 60 % 10;
+  Serial.print(highMins);
+  Serial.print(lowMins);
+  Serial.print(":");
+  Serial.print(highSecs);
+  Serial.println(lowSecs);
+}
+void displayTime(long seconds){
+  
+  byte highMins = countdownTimer / 1000 / 60 / 10;
+  byte lowMins = countdownTimer / 1000 / 60 % 10;
+  byte highSecs = (countdownTimer / 1000) % 60 / 10;
+  byte lowSecs = (countdownTimer / 1000) % 60 % 10;
+  matrix.writeDigitNum(0,highMins, false);
+  matrix.writeDigitNum(1,lowMins, false);
+  matrix.drawColon(true);
+  matrix.writeDigitNum(3,highSecs, false);
+  matrix.writeDigitNum(4,lowSecs, false);
+  matrix.writeDisplay();
+}
+
+void clearTimer(){
+  matrix.clear();
+  matrix.writeDisplay();
+}
 

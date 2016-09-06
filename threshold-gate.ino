@@ -1,8 +1,16 @@
+#include <Adafruit_LEDBackpack.h>
+
+#include <Adafruit_GFX.h>
+#include <gfxfont.h>
+
 #include <Wire.h>
 #include "thresholdGate.h"
 
 // Main Countdown Timer
 long countdownTimer = 0;
+// 7 segment display
+Adafruit_7segment matrix = Adafruit_7segment();
+
 
 void setup()
 {
@@ -25,8 +33,11 @@ void setup()
   setInput(PIN_CLOSE);
   Serial.begin(9600);
 
-  timerSetMins(1);
+  timerSetSeconds(90);
   timerStart();
+
+  // init 7 segment displays
+  matrix.begin(0x70);
 }
 
 void loop()
