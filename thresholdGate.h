@@ -8,7 +8,7 @@
 #define STATE_GATE_OFF 1
 #define STATE_COUNTDOWN 2
 #define STATE_OPENING 3
-#define STATE_ON 4
+#define STATE_OPEN 4
 #define STATE_PAUSED 5
 #define STATE_CLOSING 6
 #define STATE_CLOSING_EMERGENCY 7
@@ -37,3 +37,9 @@
 #define BTN_OPEN 4
 #define BTN_HQ_PAUSE 5
 #define BTN_CLOSE 6
+
+// LEDs
+#define LED_RESET 0
+#define LED_CLOSE 1
+#define LED_PAUSE 3
+#define LED_TIME 4

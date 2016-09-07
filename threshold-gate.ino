@@ -8,6 +8,8 @@
 
 // Main Countdown Timer
 long countdownTimer = 0;
+boolean timerEnded = false;
+
 // 7 segment display
 Adafruit_7segment matrix = Adafruit_7segment();
 
@@ -18,23 +20,13 @@ void setup()
   Wire.begin();
     
   // Set LED pins to output mode
-  pinMode(PIN_RESET_LED, OUTPUT);
-  pinMode(PIN_CLOSE_LED, OUTPUT);
-  pinMode(PIN_PAUSE_LED, OUTPUT);
-  pinMode(PIN_TIME_LED, OUTPUT);
-
+  initLights();
+  
   // turn on internal resistors for inputs
-  setInput(PIN_RESET);
-  setInput(PIN_ADD_MIN);
-  setInput(PIN_SUB_MIN);
-  setInput(PIN_PAUSE);
-  setInput(PIN_HQ_PAUSE);
-  setInput(PIN_OPEN);
-  setInput(PIN_CLOSE);
-  Serial.begin(9600);
+  initButtons();  
 
-  timerSetSeconds(90);
-  timerStart();
+  // Start Serial output
+  Serial.begin(9600);
 
   // init 7 segment displays
   matrix.begin(0x70);
@@ -45,7 +37,6 @@ void loop()
   readButtons(); // check the state of all buttons
   runState(); // Run the state machine
   countdown(); // Run the countdown timer
-  if (countdownTimer < 1000*10){
-    timerAdd(30);
-  }
+  controlLightsPulse();
+  controlLightsDisplay(); 
 }
