@@ -3,10 +3,11 @@ void stateCountdown(){
     stateStarted = true;
     timerSetSeconds(10); // should be 300
     timerStart();
-    controlLights[LED_RESET] = true;
-    controlLights[LED_CLOSE] = false;
-    controlLights[LED_PAUSE] = false;
-    controlLights[LED_TIME] = false;
+    light(LED_RESET, true);
+    light(LED_CLOSE, false);
+    light(LED_PAUSE, false);
+    light(LED_TIME, false);
+    playSound(1);
     
   }
   
@@ -16,7 +17,7 @@ void stateCountdown(){
     changeState(STATE_OPEN);
   }
 
-  if (timerEnded){
+  if (isTimerEnded()){
     changeState(STATE_OPENING);
   }
 }
@@ -26,10 +27,10 @@ void stateOpening(){
     stateStarted = true;
     timerSetSeconds(30); // 30*60
     timerStart();
-    controlLights[LED_RESET] = true;
-    controlLights[LED_CLOSE] = true;
-    controlLights[LED_PAUSE] = false;
-    controlLights[LED_TIME] = true; 
+    light(LED_RESET, true);
+    light(LED_CLOSE, true);
+    light(LED_PAUSE, false);
+    light(LED_TIME, true);
   }
   
   if (readButtonPress(BTN_RESET)){

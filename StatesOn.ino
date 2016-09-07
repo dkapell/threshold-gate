@@ -2,10 +2,10 @@ void stateOpen(){
   if (!stateStarted){
     stateStarted = true;
     timerStart();
-    controlLights[LED_RESET] = true;
-    controlLights[LED_CLOSE] = true;
-    controlLights[LED_PAUSE] = true;
-    controlLights[LED_TIME] = true; 
+    light(LED_RESET, true);
+    light(LED_CLOSE, true);
+    light(LED_PAUSE, true);
+    light(LED_TIME, true);
   }
   
   if (readButtonPress(BTN_RESET)){
@@ -22,7 +22,7 @@ void stateOpen(){
     changeState(STATE_PAUSED);
   }
   
-  if (timerEnded){
+  if (isTimerEnded()){
     changeState(STATE_CLOSING);
   }
 }
@@ -31,10 +31,10 @@ void statePaused(){
   if (!stateStarted){
     stateStarted = true;
     timerStop();
-    controlLights[LED_RESET] = true;
-    controlLights[LED_CLOSE] = true;
-    controlLights[LED_PAUSE] = true;
-    controlLights[LED_TIME] = true; 
+    light(LED_RESET, true);
+    light(LED_CLOSE, true);
+    light(LED_PAUSE, true);
+    light(LED_TIME, true);
   }
   
   if (readButtonPress(BTN_RESET)){

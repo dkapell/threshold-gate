@@ -1,4 +1,8 @@
-// Main State Machine
+/* Main State Machine
+ *  void changeState(state) - changes state to the specified
+ *  void runstate() - runs the current state, call from loop();
+ */
+ 
 byte state = STATE_INITIAL;
 boolean stateStarted = false;
 long stateTimer = 0;

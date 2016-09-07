@@ -1,10 +1,10 @@
 void stateClosing(){
   if (!stateStarted){
     stateStarted = true;
-    controlLights[LED_RESET] = true;
-    controlLights[LED_CLOSE] = false;
-    controlLights[LED_PAUSE] = false;
-    controlLights[LED_TIME] = false; 
+    light(LED_RESET, true);
+    light(LED_CLOSE, false);
+    light(LED_PAUSE, false);
+    light(LED_TIME, false);
   }
   
   if (readButtonPress(BTN_RESET)){
@@ -20,10 +20,10 @@ void stateClosing(){
 void stateClosingEmergency(){
   if (!stateStarted){
     stateStarted = true;
-    controlLights[LED_RESET] = true;
-    controlLights[LED_CLOSE] = false;
-    controlLights[LED_PAUSE] = false;
-    controlLights[LED_TIME] = false; 
+    light(LED_RESET, true);
+    light(LED_CLOSE, false);
+    light(LED_PAUSE, false);
+    light(LED_TIME, false);
   }
   
   if (readButtonPress(BTN_RESET)){

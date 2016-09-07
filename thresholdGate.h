@@ -28,6 +28,7 @@
 #define PIN_OPEN 11
 #define PIN_HQ_PAUSE 12
 #define PIN_CLOSE 13
+#define PIN_SOUND_RST A4
 
 // Buttons
 #define BTN_RESET 0
@@ -43,3 +44,11 @@
 #define LED_CLOSE 1
 #define LED_PAUSE 3
 #define LED_TIME 4
+
+// Sounds
+#define SND_COUNTDOWN_START 0
+#define SND_GATE_OPENING 1
+#define SND_GATE_OPEN 2
+#define SND_GATE_CLOSING 3
+#define SND_GATE_CLOSING_EMERGENCY 4
+#define SND_GATE_OFF 5 

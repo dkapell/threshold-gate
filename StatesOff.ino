@@ -5,10 +5,10 @@ void stateInitial(){
   if (!stateStarted){
     stateStarted = true;
     timerStop();
-    controlLights[LED_RESET] = false;
-    controlLights[LED_CLOSE] = false;
-    controlLights[LED_PAUSE] = false;
-    controlLights[LED_TIME] = false;
+    light(LED_RESET, false);
+    light(LED_CLOSE, false);
+    light(LED_PAUSE, false);
+    light(LED_TIME, false);
   }
   
   //Transistion out after 1 seconds
@@ -23,10 +23,10 @@ void stateGateOff(){
   if (!stateStarted){
     stateStarted = true;
     timerOff();
-    controlLights[LED_RESET] = true;
-    controlLights[LED_CLOSE] = false;
-    controlLights[LED_PAUSE] = false;
-    controlLights[LED_TIME] = false;
+    light(LED_RESET, true);
+    light(LED_CLOSE, false);
+    light(LED_PAUSE, false);
+    light(LED_TIME, false);
     
   }
  
