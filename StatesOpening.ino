@@ -1,13 +1,14 @@
 void stateCountdown(){
   if (!stateStarted){
     stateStarted = true;
-    timerSetSeconds(10); // should be 300
+    timerSetSeconds(20); // should be 300
     timerStart();
     light(LED_RESET, true);
     light(LED_CLOSE, false);
     light(LED_PAUSE, false);
     light(LED_TIME, false);
-    playSound(1);
+    soundStop();
+    soundPlay(SND_COUNTDOWN_START, false, 0);
     
   }
   
@@ -31,6 +32,7 @@ void stateOpening(){
     light(LED_CLOSE, true);
     light(LED_PAUSE, false);
     light(LED_TIME, true);
+    soundPlay(SND_GATE_OPENING, false, 0);
   }
   
   if (readButtonPress(BTN_RESET)){
@@ -47,7 +49,7 @@ void stateOpening(){
 
 
   //Transistion out after 5 seconds of opening animation
-  if ((millis() - stateTimer) > 5000){
+  if ((millis() - stateTimer) > 2745){
     changeState(STATE_OPEN);
   }
 }

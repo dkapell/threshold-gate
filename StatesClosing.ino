@@ -5,6 +5,8 @@ void stateClosing(){
     light(LED_CLOSE, false);
     light(LED_PAUSE, false);
     light(LED_TIME, false);
+    soundStop();
+    //soundPlay(SND_GATE_CLOSING, false, 0);
   }
   
   if (readButtonPress(BTN_RESET)){
@@ -24,6 +26,8 @@ void stateClosingEmergency(){
     light(LED_CLOSE, false);
     light(LED_PAUSE, false);
     light(LED_TIME, false);
+    soundStop();
+    //soundPlay(SND_GATE_CLOSING_EMERGENCY, false, 0);
   }
   
   if (readButtonPress(BTN_RESET)){

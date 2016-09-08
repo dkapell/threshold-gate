@@ -2,17 +2,17 @@
  *  void changeState(state) - changes state to the specified
  *  void runstate() - runs the current state, call from loop();
  */
- 
+
 byte state = STATE_INITIAL;
 boolean stateStarted = false;
 long stateTimer = 0;
 byte oldState = 0;
 
 void changeState(byte newState){
-  Serial.print("Changing state from ");
-  Serial.print(state);
-  Serial.print(" to ");
-  Serial.println(newState);
+  //Serial.print("Changing state from ");
+  //Serial.print(state);
+  //Serial.print(" to ");
+  //Serial.println(newState);
   oldState = state;
   state = newState;
   stateStarted = false;

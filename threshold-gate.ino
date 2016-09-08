@@ -16,10 +16,12 @@ void setup()
   initButtons();  
 
   // Start Serial output
-  Serial.begin(9600);
+  //Serial.begin(9600);
 
   // init 7 segment displays
   initTimer();
+
+  initSound();
 }
 
 void loop()
@@ -29,4 +31,5 @@ void loop()
   countdown(); // Run the countdown timer
   controlLightsPulse(); // calculate button lights pulse
   controlLightsDisplay(); // turn on lights
+  loopSound();  // loop active sound
 }

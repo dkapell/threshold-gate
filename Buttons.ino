@@ -8,7 +8,7 @@
 byte buttonPins[] = {PIN_RESET, PIN_ADD_MIN, PIN_SUB_MIN, PIN_PAUSE, PIN_OPEN, PIN_HQ_PAUSE, PIN_CLOSE};
 byte lastButtonStates[7];
 long lastButtonTimes[7];
-long buttonDebounceDelay = 50;
+const long buttonDebounceDelay = 50;
 
 // Current state of each button
 byte buttonStates[7];

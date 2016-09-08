@@ -5,14 +5,15 @@ void stateInitial(){
   if (!stateStarted){
     stateStarted = true;
     timerStop();
-    light(LED_RESET, false);
-    light(LED_CLOSE, false);
-    light(LED_PAUSE, false);
-    light(LED_TIME, false);
+    light(LED_RESET, true);
+    light(LED_CLOSE, true);
+    light(LED_PAUSE, true);
+    light(LED_TIME, true);
+    
   }
   
-  //Transistion out after 1 seconds
-  if ((millis() - stateTimer) > 1000){
+  //Transistion out after 2 seconds
+  if ((millis() - stateTimer) > 3000){
     changeState(STATE_GATE_OFF);  
   }
 }
@@ -27,7 +28,7 @@ void stateGateOff(){
     light(LED_CLOSE, false);
     light(LED_PAUSE, false);
     light(LED_TIME, false);
-    
+    soundPlay(SND_GATE_OFF, true, 14100);
   }
  
   if (readButtonPress(BTN_RESET)){

@@ -6,6 +6,7 @@ void stateOpen(){
     light(LED_CLOSE, true);
     light(LED_PAUSE, true);
     light(LED_TIME, true);
+    soundPlay(SND_GATE_OPEN, true, 4664);
   }
   
   if (readButtonPress(BTN_RESET)){
