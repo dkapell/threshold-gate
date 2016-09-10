@@ -42,8 +42,8 @@
 // LEDs
 #define LED_RESET 0
 #define LED_CLOSE 1
-#define LED_PAUSE 3
-#define LED_TIME 4
+#define LED_PAUSE 2
+#define LED_TIME 3
 
 // Sounds // These need to be pulled from the drive in order
 #define SND_GATE_OFF 1
@@ -52,3 +52,13 @@
 #define SND_GATE_OPEN 4
 #define SND_GATE_CLOSING 5
 #define SND_GATE_CLOSING_EMERGENCY 5
+
+// Gate Lights
+#define RAINBOW 0  // Cycle between colors
+#define WIPE 1 // Wipe a color from one end to the other - does not clear first
+#define DOUBLE_WIPE 2 // Wipe a color in from both ends - does not clear first
+#define SPIN 3 // spin bright spot of a color around the strip
+#define DOUBLE_SPIN 4 // spin ght spots of two colors around the strip
+#define PULSE 5 // pulse bright spots of a color in place
+
+#define GATE_ELEMENTS 6

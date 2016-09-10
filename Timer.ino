@@ -66,6 +66,9 @@ void timerStart(void){
 //Pause the timer
 void timerStop(void){
   timerRunning = false;
+  if(timerDisplay){
+    showColon();
+  }
 }
 
 void timerOff(void){
@@ -105,6 +108,11 @@ void blinkColon(){
   } else {
     matrix.drawColon(false);
   }
+  matrix.writeDisplay();
+}
+
+void showColon(){
+  matrix.drawColon(true);
   matrix.writeDisplay();
 }
 

@@ -4,8 +4,8 @@
  *  void controlLightsDisplay() - set all lights to the calculated brightness, call from loop()
  *  void controlLightsPulse() - calculate pulsing animation for lights, call from loop()
  */
-byte controlMaxBrightness = 128;
-byte controlMinBrightness = 8;
+byte controlMaxBrightness[] = {128, 256, 128, 128};
+byte controlMinBrightness[] = {8, 16, 8, 8};
 long controlFadeTime = 2000;
 byte controlLightsPins[] = {PIN_RESET_LED, PIN_CLOSE_LED, PIN_PAUSE_LED, PIN_TIME_LED};
 
@@ -30,6 +30,11 @@ void initLights(){
 void controlLightsDisplay(void){
   for (byte i = 0 ; i < 4 ; i++){
     analogWrite(controlLightsPins[i], controlLightsBrightness[i]);
+   
+    //Serial.print("setting pin ");
+    //Serial.print(controlLightsPins[i]);
+    //Serial.print(" to ");
+    //Serial.println(controlLightsBrightness[i]);
   }
 }
 
@@ -43,10 +48,13 @@ void controlLightsPulse(void){
   
   for (byte i = 0 ; i < 4 ; i++){
     if (controlLights[i]){
+      byte maxBrightness = controlMaxBrightness[i];
+      byte minBrightness = controlMinBrightness[i];
+      
       if (controlLightsIncreasing){
-        controlLightsBrightness[i] = controlMaxBrightness - (currentStep*(controlMaxBrightness - controlMinBrightness)/controlFadeTime); // fade out
+        controlLightsBrightness[i] = maxBrightness - (currentStep*(maxBrightness - minBrightness)/controlFadeTime); // fade out
       } else {
-        controlLightsBrightness[i] = controlMinBrightness + currentStep*(controlMaxBrightness - controlMinBrightness)/controlFadeTime; // fade in
+        controlLightsBrightness[i] = minBrightness + currentStep*(maxBrightness - minBrightness)/controlFadeTime; // fade in
       }
     } else {
       controlLightsBrightness[i] = 0;
