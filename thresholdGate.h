@@ -63,7 +63,7 @@
 #define PULSE 6 // pulse bright spots of a color in place
 #define COMET 7 // Spin a bright spot with random tail
 
-#define GATE_ELEMENTS 6
+#define GATE_ELEMENTS 8
 
 struct RGB {
   byte r;

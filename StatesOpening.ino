@@ -1,7 +1,11 @@
 void stateCountdown(){
   if (!stateStarted){
     stateStarted = true;
-    timerSetSeconds(20); // should be 300
+    if (demoMode){
+      timerSetSeconds(11); 
+    } else {
+      timerSetSeconds(300);
+    }
     timerStart();
     light(LED_RESET, true);
     light(LED_CLOSE, false);
@@ -25,7 +29,11 @@ void stateCountdown(){
 void stateOpening(){
   if (!stateStarted){
     stateStarted = true;
-    timerSetSeconds(30); // 30*60
+    if (demoMode){
+      timerSetSeconds(30); // 30*60
+    } else {
+      timerSetSeconds(30*60); // 30 mins 
+    }
     timerStart();
     light(LED_RESET, true);
     light(LED_CLOSE, true);

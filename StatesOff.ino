@@ -41,8 +41,8 @@ void stateGateOff(){
     changeState(STATE_OPEN);
   }
 
-  //Transistion out after 5 seconds  REMOVE THIS
-  if ((millis() - stateTimer) > 5000){
+  //Transistion out after 10 seconds in demo mode
+  if (demoMode && (millis() - stateTimer) > 5000){
     changeState(STATE_COUNTDOWN);  
   }
 }

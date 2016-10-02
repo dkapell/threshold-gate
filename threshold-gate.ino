@@ -8,6 +8,9 @@
 // Common defines
 #include "thresholdGate.h"
 
+// Demo mode
+boolean demoMode = true;
+
 void setup()
 {
   // Initialize Lights
