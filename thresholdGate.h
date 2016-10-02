@@ -56,9 +56,22 @@
 // Gate Lights
 #define RAINBOW 0  // Cycle between colors
 #define WIPE 1 // Wipe a color from one end to the other - does not clear first
-#define DOUBLE_WIPE 2 // Wipe a color in from both ends - does not clear first
-#define SPIN 3 // spin bright spot of a color around the strip
-#define DOUBLE_SPIN 4 // spin ght spots of two colors around the strip
-#define PULSE 5 // pulse bright spots of a color in place
+#define WIPE_OFF 2 // turn off from one end to the other
+#define DOUBLE_WIPE 3 // Wipe a color in from both ends - does not clear first
+#define SPIN 4 // spin bright spot of a color around the strip
+#define DOUBLE_SPIN 5 // spin ght spots of two colors around the strip
+#define PULSE 6 // pulse bright spots of a color in place
+#define COMET 7 // Spin a bright spot with random tail
 
 #define GATE_ELEMENTS 6
+
+struct RGB {
+  byte r;
+  byte g;
+  byte b;
+};
+
+RGB GateColor(int GatePos, byte brightness);
+RGB GateColor(int GatePos, byte brightness, uint32_t color);
+RGB GateColor(int GatePos, byte brightness, int cycle, uint32_t color);
+RGB CometColor(int GatePos, byte brightness);

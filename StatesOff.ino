@@ -9,9 +9,12 @@ void stateInitial(){
     light(LED_CLOSE, true);
     light(LED_PAUSE, true);
     light(LED_TIME, true);
-    
+    setGateAnimation(WIPE, getColor(255, 255, 255), 3); 
   }
-  
+
+  if (isAnimationDone()){
+    setGateAnimation(WIPE_OFF, 3); 
+  }
   //Transistion out after 2 seconds
   if ((millis() - stateTimer) > 3000){
     changeState(STATE_GATE_OFF);  
@@ -29,6 +32,7 @@ void stateGateOff(){
     light(LED_PAUSE, false);
     light(LED_TIME, false);
     soundPlay(SND_GATE_OFF, true, 14100);
+    setGateAnimation(PULSE, getColor(255,0,0));
   }
  
   if (readButtonPress(BTN_RESET)){

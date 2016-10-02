@@ -29,6 +29,7 @@ int timerDelta = 0;
 
 void initTimer(void){
    matrix.begin(0x70);
+   //Wire.setClock(1000);
 }
 
 // Explicitly set a timer

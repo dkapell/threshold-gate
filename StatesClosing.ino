@@ -7,6 +7,7 @@ void stateClosing(){
     light(LED_TIME, false);
     soundStop();
     //soundPlay(SND_GATE_CLOSING, false, 0);
+    setGateAnimation(COMET, getColor(255,32, 32), 60);
   }
   
   if (readButtonPress(BTN_RESET)){
@@ -28,6 +29,7 @@ void stateClosingEmergency(){
     light(LED_TIME, false);
     soundStop();
     //soundPlay(SND_GATE_CLOSING_EMERGENCY, false, 0);
+    setGateAnimation(COMET, getColor(255,32, 32), 60);
   }
   
   if (readButtonPress(BTN_RESET)){

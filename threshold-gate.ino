@@ -3,6 +3,7 @@
 #include <Adafruit_LEDBackpack.h>
 #include <Adafruit_GFX.h>
 #include <gfxfont.h>
+#include <Wire.h>
 
 // Common defines
 #include "thresholdGate.h"
@@ -21,6 +22,9 @@ void setup()
   // init 7 segment displays
   initTimer();
 
+  // init Gate lights
+  initGate();
+
   initSound();
 }
 
@@ -32,4 +36,5 @@ void loop()
   controlLightsPulse(); // calculate button lights pulse
   controlLightsDisplay(); // turn on lights
   loopSound();  // loop active sound
+  displayGate(); // Run gate lights animations
 }

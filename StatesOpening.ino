@@ -9,7 +9,6 @@ void stateCountdown(){
     light(LED_TIME, false);
     soundStop();
     soundPlay(SND_COUNTDOWN_START, false, 0);
-    
   }
   
   if (readButtonPress(BTN_RESET)){
@@ -33,6 +32,7 @@ void stateOpening(){
     light(LED_PAUSE, false);
     light(LED_TIME, true);
     soundPlay(SND_GATE_OPENING, false, 0);
+    setGateAnimation(COMET, getColor(255,255, 255), 60);
   }
   
   if (readButtonPress(BTN_RESET)){
