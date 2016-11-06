@@ -38,7 +38,9 @@ void readButtons(){
       if (reading != buttonStates[i]){
         buttonStates[i] = reading;
         if(reading == LOW){
-          buttonPressed[i] = true;    
+          buttonPressed[i] = true;
+          Serial.print(i);
+          Serial.println(" pressed");
         } else {
           buttonPressed[i] = false;
         }

@@ -9,7 +9,7 @@ void stateInitial(){
     light(LED_CLOSE, true);
     light(LED_PAUSE, true);
     light(LED_TIME, true);
-    setGateAnimation(WIPE, getColor(255, 255, 255), 3); 
+    setGateAnimation(WIPE, getColor(128, 128, 128), 3); 
   }
 
   if (isAnimationDone()){
@@ -38,6 +38,11 @@ void stateGateOff(){
   if (readButtonPress(BTN_RESET)){
     changeState(STATE_COUNTDOWN);
   } else if (readButtonPress(BTN_OPEN)){
+   if (demoMode){
+      timerSetSeconds(30); // 30*60
+    } else {
+      timerSetSeconds(30*60); // 30 mins 
+    }
     changeState(STATE_OPEN);
   }
 

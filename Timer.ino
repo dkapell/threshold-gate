@@ -67,8 +67,8 @@ void timerStart(void){
 //Pause the timer
 void timerStop(void){
   timerRunning = false;
-  if(timerDisplay){
-    showColon();
+  if(timerDisplay && countdownTimer > 0){
+    blinkColon();
   }
 }
 
@@ -89,22 +89,23 @@ void countdown(void){
     if (countdownTimer <= 0){
       timerRunning = false;
       timerEnded = true;
+      countdownTimer = 0;
     }
     timerLast = now;
   }
-  long seconds = countdownTimer / 1000;
+  long seconds = (countdownTimer + 999) / 1000 ;
   if (oldSeconds != seconds) {
     displayTime(seconds);
     //printTime(seconds);
   } 
   oldSeconds = seconds;
-  if(timerDisplay && timerRunning){
+  if(timerDisplay && !timerRunning && countdownTimer > 0){
     blinkColon();
   }
 }
 
 void blinkColon(){
-  if (countdownTimer/500 % 2 == 0){
+  if (millis()/500 % 2 == 0){
     matrix.drawColon(true); 
   } else {
     matrix.drawColon(false);

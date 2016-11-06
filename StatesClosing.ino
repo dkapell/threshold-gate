@@ -27,6 +27,8 @@ void stateClosingEmergency(){
     light(LED_CLOSE, false);
     light(LED_PAUSE, false);
     light(LED_TIME, false);
+    timerSetSeconds(0);
+    timerStop();
     soundStop();
     //soundPlay(SND_GATE_CLOSING_EMERGENCY, false, 0);
     setGateAnimation(COMET, getColor(255,32, 32), 60);
@@ -41,3 +43,4 @@ void stateClosingEmergency(){
     changeState(STATE_GATE_OFF);
   } 
 }
+

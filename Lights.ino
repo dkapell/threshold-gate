@@ -4,7 +4,7 @@
  *  void controlLightsDisplay() - set all lights to the calculated brightness, call from loop()
  *  void controlLightsPulse() - calculate pulsing animation for lights, call from loop()
  */
-byte controlMaxBrightness[] = {128, 256, 128, 128};
+byte controlMaxBrightness[] = {128, 255, 128, 128};
 byte controlMinBrightness[] = {8, 16, 8, 8};
 long controlFadeTime = 2000;
 byte controlLightsPins[] = {PIN_RESET_LED, PIN_CLOSE_LED, PIN_PAUSE_LED, PIN_TIME_LED};

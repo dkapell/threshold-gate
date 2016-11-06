@@ -2,7 +2,7 @@ void stateCountdown(){
   if (!stateStarted){
     stateStarted = true;
     if (demoMode){
-      timerSetSeconds(11); 
+      timerSetSeconds(10); 
     } else {
       timerSetSeconds(300);
     }
@@ -18,6 +18,11 @@ void stateCountdown(){
   if (readButtonPress(BTN_RESET)){
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_OPEN)){
+    if (demoMode){
+      timerSetSeconds(30); // 30*60
+    } else {
+      timerSetSeconds(30*60); // 30 mins 
+    }
     changeState(STATE_OPEN);
   }
 
@@ -46,6 +51,11 @@ void stateOpening(){
   if (readButtonPress(BTN_RESET)){
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_OPEN)){
+    if (demoMode){
+      timerSetSeconds(10); 
+    } else {
+      timerSetSeconds(300);
+    }
     changeState(STATE_OPEN);
   } else if (readButtonPress(BTN_CLOSE)){
     changeState(STATE_CLOSING_EMERGENCY);
