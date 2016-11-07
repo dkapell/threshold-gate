@@ -8,8 +8,10 @@ long trackStarted;
 long currentTrackLength;
 
 void initSound(){
-  Serial.begin(9600); 
-  if (sfx.reset()) {
+  Serial.begin(9600);
+  if (DEBUG){
+   soundEnabled = false;
+  } else if (sfx.reset()) {
     soundEnabled = true;
   } else {
     Serial.println("No SFX found");

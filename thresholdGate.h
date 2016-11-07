@@ -1,3 +1,6 @@
+// Debug Mode
+#define DEBUG 0
+
 //Colors
 #define RED 0
 #define GREEN 1
@@ -12,6 +15,7 @@
 #define STATE_PAUSED 5
 #define STATE_CLOSING 6
 #define STATE_CLOSING_EMERGENCY 7
+#define STATE_DEMO 8
 
 //Pins
 #define PIN_RX 0

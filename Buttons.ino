@@ -39,8 +39,13 @@ void readButtons(){
         buttonStates[i] = reading;
         if(reading == LOW){
           buttonPressed[i] = true;
-          Serial.print(i);
-          Serial.println(" pressed");
+          if (DEBUG){
+            Serial.print("button ");
+            Serial.print(i);
+            Serial.print(" on pin ");
+            Serial.print(buttonPins[i]);
+            Serial.println(" pressed");
+          }
         } else {
           buttonPressed[i] = false;
         }

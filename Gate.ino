@@ -1,4 +1,26 @@
-// 192
+/* Gate Display logic
+ *  External
+ *    void initGate() - initialize gate lights, call from setup()
+ *    void displayGate() - run the current gate animation, call from loop()
+ *    void setGateAnimation(animation) - set animation (RAINBOW, no delay)
+ *    void setGateAnimation(animation, delay) - set animation 
+ *    void setGateAnimation(animation, color) - set animation 
+ *    void setGateAnimation(animation, color, time) - set animation 
+ *    void setGateAnimation(animation, color1, color2, time) - set animation
+ *    void gateOff() - turn gate animation off
+ *  Internal
+ *    boolean isAnimationDone() - check if animation (i.e. wipe, wipe_off, doublewipe) is complete
+ *    byte getRed(packed), byte getGreen(packed), byte getBlue(packed) - get the r/g/b component from a packed value
+ *    uint32_t getColor(red, green, blue) - calculate packed color value
+ *  Animations
+ *    RAINBOW - cycling rainbow (delay)
+ *    WIPE - Wipes a color from 0 -> END (delay, color)
+ *    DOUBLE_WIPE - Wipes a color from both ends to the middle (delay, color)
+ *    WIPE_OFF - Wipes off from 0 -> end (delay)
+ *    SPIN - Spins GATE_ELEMENTS bright spots around in a loop (delay, color)
+ *    DOUBLE_SPIN - Spins GATE_ELEMENTS bright spots around in a loop of two colors (delay, color1, color2)
+ *    COMET - Spins sparkling colors around in a loop (delay, color)
+ */
 int pixels = 192;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(pixels, PIN_GATE, NEO_GRB + NEO_KHZ800);

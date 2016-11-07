@@ -9,10 +9,12 @@ long stateTimer = 0;
 byte oldState = 0;
 
 void changeState(byte newState){
-  Serial.print("Changing state from ");
-  Serial.print(state);
-  Serial.print(" to ");
-  Serial.println(newState);
+  if (DEBUG) {
+    Serial.print("Changing state from ");
+    Serial.print(state);
+    Serial.print(" to ");
+    Serial.println(newState);
+  }
   oldState = state;
   state = newState;
   stateStarted = false;
@@ -30,6 +32,7 @@ void runState(){
     case STATE_PAUSED:            statePaused();            break;
     case STATE_CLOSING:           stateClosing();           break;
     case STATE_CLOSING_EMERGENCY: stateClosingEmergency();  break;
+    case STATE_DEMO:              stateDemo();              break;
     default:
       state = STATE_GATE_OFF;
   }
