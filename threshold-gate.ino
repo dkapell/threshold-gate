@@ -9,7 +9,7 @@
 #include "thresholdGate.h"
 
 // Demo mode
-boolean demoMode = true;
+boolean demoMode = false;
 
 void setup()
 {

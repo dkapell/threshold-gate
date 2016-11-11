@@ -20,6 +20,8 @@ void stateInitial(){
   if ((millis() - stateTimer) > 3000){
     if (checkButtonState(BTN_CLOSE) == LOW){
       changeState(STATE_DEMO);
+    } else if (checkButtonState(BTN_PAUSE) == LOW){
+      demoMode = true;
     } else {
       changeState(STATE_GATE_OFF);  
     }
@@ -48,12 +50,8 @@ void stateGateOff(){
     } else {
       timerSetSeconds(30*60); // 30 mins 
     }
+    soundStop();
     changeState(STATE_OPEN);
-  }
-
-  //Transistion out after 10 seconds in demo mode
-  if (demoMode && (millis() - stateTimer) > 10000){
-    changeState(STATE_COUNTDOWN);  
   }
 }
 

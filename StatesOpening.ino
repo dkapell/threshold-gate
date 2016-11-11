@@ -31,6 +31,7 @@ void stateCountdown(){
     } else {
       timerSetSeconds(30*60); // 30 mins 
     }
+    soundStop();
     changeState(STATE_OPEN);
   }
 
@@ -58,6 +59,7 @@ void stateOpening(){
   }
   
   if (readButtonPress(BTN_RESET)){
+    soundStop();
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_OPEN)){
     if (demoMode){
@@ -75,7 +77,7 @@ void stateOpening(){
   }
 
 
-  //Transistion out after 5 seconds of opening animation
+  //Transistion out after the sound clip ends
   if ((millis() - stateTimer) > 10000){
     changeState(STATE_OPEN);
   }

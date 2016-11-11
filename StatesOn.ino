@@ -11,6 +11,7 @@ void stateOpen(){
   }
   
   if (readButtonPress(BTN_RESET)){
+    soundStop();
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_CLOSE)){
     changeState(STATE_CLOSING_EMERGENCY);

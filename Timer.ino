@@ -36,7 +36,7 @@ void initTimer(void){
 void timerSetSeconds(long seconds){
   countdownTimer = seconds * 1000;
   oldSeconds = seconds;
-  displayTime(seconds);
+  displayTime(countdownTimer);
   timerDelta = 0;
 }
 
@@ -93,10 +93,14 @@ void countdown(void){
     }
     timerLast = now;
   }
-  long seconds = (countdownTimer + 999) / 1000 ;
+  //long seconds = (countdownTimer + 999) / 1000 ;
+  long seconds = (countdownTimer) / 1000 ;
+  if (seconds < 60){
+    seconds = countdownTimer / 10;
+  }  
   if (oldSeconds != seconds) {
-    displayTime(seconds);
-    //printTime(seconds);
+    displayTime(countdownTimer);
+    //printTime(countdownTimer);
   } 
   oldSeconds = seconds;
   if(timerDisplay && !timerRunning && countdownTimer > 0){
@@ -118,11 +122,24 @@ void showColon(){
   matrix.writeDisplay();
 }
 
-void printTime(long seconds){
-  byte highMins = seconds / 60 / 10;
-  byte lowMins = seconds / 60 % 10;
-  byte highSecs = seconds % 60 / 10;
-  byte lowSecs = seconds % 60 % 10;
+void printTime(long time){
+  byte highMins, lowMins, highSecs, lowSecs;
+    long seconds;
+    if (time > 60000){
+      Serial.println(time);
+    
+      seconds = (time + 999) / 1000 ; 
+      highMins = seconds / 60 / 10;
+      lowMins = seconds / 60 % 10;
+      highSecs = seconds % 60 / 10;
+      lowSecs = seconds % 60 % 10;
+    } else {
+      seconds = (time + 9) / 10;
+      highMins = seconds / 100 / 10;
+      lowMins = seconds / 100 % 10;
+      highSecs = seconds % 100 / 10;
+      lowSecs = seconds % 100 % 10;
+    }
   Serial.print(highMins);
   Serial.print(lowMins);
   Serial.print(":");
@@ -130,12 +147,24 @@ void printTime(long seconds){
   Serial.println(lowSecs);
 }
 
-void displayTime(long seconds){
+void displayTime(long time){
   if(timerDisplay){
-    byte highMins = seconds / 60 / 10;
-    byte lowMins = seconds / 60 % 10;
-    byte highSecs = seconds % 60 / 10;
-    byte lowSecs = seconds % 60 % 10;
+    byte highMins, lowMins, highSecs, lowSecs;
+    long seconds;
+    
+    if (time > 60000){
+      seconds = (time + 999) / 1000 ; 
+      highMins = seconds / 60 / 10;
+      lowMins = seconds / 60 % 10;
+      highSecs = seconds % 60 / 10;
+      lowSecs = seconds % 60 % 10;
+    } else {
+      seconds = (time ) / 10;
+      highMins = seconds / 100 / 10;
+      lowMins = seconds / 100 % 10;
+      highSecs = seconds % 100 / 10;
+      lowSecs = seconds % 100 % 10;
+    }
     matrix.writeDigitNum(0,highMins, false);
     matrix.writeDigitNum(1,lowMins, false);
     matrix.drawColon(true); 
