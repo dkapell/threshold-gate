@@ -1,10 +1,11 @@
+boolean countDownSoundStarted = false;
 void stateCountdown(){
   if (!stateStarted){
     stateStarted = true;
     if (demoMode){
-      timerSetSeconds(10); 
+      timerSetSeconds(20); 
     } else {
-      timerSetSeconds(300);
+      timerSetSeconds(5 * 60); // 5 minutes
     }
     timerStart();
     light(LED_RESET, true);
@@ -13,9 +14,16 @@ void stateCountdown(){
     light(LED_TIME, false);
     soundStop();
     soundPlay(SND_COUNTDOWN_START, false, 0);
+    countDownSoundStarted = false;
+  }
+  
+  if ((millis() - stateTimer) > 3363 && !countDownSoundStarted){
+    soundPlay(SND_GATE_OFF, true, 14100);
+    countDownSoundStarted = true;
   }
   
   if (readButtonPress(BTN_RESET)){
+    soundStop();
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_OPEN)){
     if (demoMode){
@@ -35,7 +43,7 @@ void stateOpening(){
   if (!stateStarted){
     stateStarted = true;
     if (demoMode){
-      timerSetSeconds(30); // 30*60
+      timerSetSeconds(30); 
     } else {
       timerSetSeconds(30*60); // 30 mins 
     }
@@ -44,6 +52,7 @@ void stateOpening(){
     light(LED_CLOSE, true);
     light(LED_PAUSE, false);
     light(LED_TIME, true);
+    soundStop();
     soundPlay(SND_GATE_OPENING, false, 0);
     setGateAnimation(COMET, getColor(255,255, 255), 60);
   }
@@ -67,7 +76,7 @@ void stateOpening(){
 
 
   //Transistion out after 5 seconds of opening animation
-  if ((millis() - stateTimer) > 2745){
+  if ((millis() - stateTimer) > 10000){
     changeState(STATE_OPEN);
   }
 }

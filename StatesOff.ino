@@ -1,6 +1,7 @@
 /* Initial state
  *  Three second delay to let all components power up
  */
+ 
 void stateInitial(){
   if (!stateStarted){
     stateStarted = true;
@@ -51,7 +52,7 @@ void stateGateOff(){
   }
 
   //Transistion out after 10 seconds in demo mode
-  if (demoMode && (millis() - stateTimer) > 5000){
+  if (demoMode && (millis() - stateTimer) > 10000){
     changeState(STATE_COUNTDOWN);  
   }
 }

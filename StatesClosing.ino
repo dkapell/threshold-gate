@@ -6,7 +6,7 @@ void stateClosing(){
     light(LED_PAUSE, false);
     light(LED_TIME, false);
     soundStop();
-    //soundPlay(SND_GATE_CLOSING, false, 0);
+    soundPlay(SND_GATE_CLOSING, false, 0);
     setGateAnimation(COMET, getColor(255,32, 32), 60);
   }
   
@@ -30,7 +30,7 @@ void stateClosingEmergency(){
     timerSetSeconds(0);
     timerStop();
     soundStop();
-    //soundPlay(SND_GATE_CLOSING_EMERGENCY, false, 0);
+    soundPlay(SND_GATE_CLOSING_EMERGENCY, false, 0);
     setGateAnimation(COMET, getColor(255,32, 32), 60);
   }
   
@@ -39,7 +39,7 @@ void stateClosingEmergency(){
   }
 
   //Transistion out after 5 seconds of opening animation
-  if ((millis() - stateTimer) > 2000){
+  if ((millis() - stateTimer) > 4495){
     changeState(STATE_GATE_OFF);
   } 
 }

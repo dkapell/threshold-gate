@@ -24,10 +24,11 @@ void soundPlay(int track, boolean loopSound, long loopLength ){
   if (soundEnabled){
     trackStarted = millis();
     //sfx.stop();
+    //delay(10);
     sfx.playTrack(track);
     trackLooping = loopSound;
     currentTrack = track;
-    currentTrackLength = loopLength;
+    currentTrackLength = loopLength-100;
     
   } else {
     Serial.print("Would ");
@@ -44,12 +45,12 @@ void soundPlay(int track, boolean loopSound, long loopLength ){
 void soundStop(void){
   trackLooping = false;
   sfx.stop();
-  delay(100);
+  delay(50);
 }
 
 void loopSound(void){
   if(soundEnabled && trackLooping){
-    if (millis() -trackStarted >= currentTrackLength){
+    if (millis() - trackStarted >= currentTrackLength){
       sfx.playTrack(currentTrack);
       trackStarted = millis();
     }  

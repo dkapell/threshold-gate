@@ -32,7 +32,7 @@
 #define PIN_OPEN 11
 #define PIN_HQ_PAUSE 12
 #define PIN_CLOSE 13
-#define PIN_SOUND_RST 17
+#define PIN_SOUND_RST 15
 
 // Buttons
 #define BTN_RESET 0
@@ -55,7 +55,7 @@
 #define SND_GATE_OPENING 3
 #define SND_GATE_OPEN 4
 #define SND_GATE_CLOSING 5
-#define SND_GATE_CLOSING_EMERGENCY 5
+#define SND_GATE_CLOSING_EMERGENCY 6
 
 // Gate Lights
 #define RAINBOW 0  // Cycle between colors

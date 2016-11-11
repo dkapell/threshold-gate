@@ -18,16 +18,14 @@ void setup()
   
   // Initialize Buttons
   initButtons();  
-
-  // Start Serial output
-  //Serial.begin(9600);
-
+  
   // init 7 segment displays
   initTimer();
 
   // init Gate lights
   initGate();
 
+  // init sound card
   initSound();
 }
 
