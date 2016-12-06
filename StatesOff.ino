@@ -11,6 +11,7 @@ void stateInitial(){
     light(LED_PAUSE, true);
     light(LED_TIME, true);
     setGateAnimation(WIPE, getColor(128, 128, 128), 3); 
+    hideTimeSelect(); 
   }
 
   if (isAnimationDone()){
@@ -40,6 +41,8 @@ void stateGateOff(){
     light(LED_TIME, false);
     soundPlay(SND_GATE_OFF, true, 14100);
     setGateAnimation(PULSE, getColor(255,0,0));
+    showTimeSelect();
+    enableTimeSelect();
   }
  
   if (readButtonPress(BTN_RESET)){
@@ -48,7 +51,7 @@ void stateGateOff(){
    if (demoMode){
       timerSetSeconds(30); // 30*60
     } else {
-      timerSetSeconds(30*60); // 30 mins 
+      timerSetMillis(getTimeSelected()); 
     }
     soundStop();
     changeState(STATE_OPEN);

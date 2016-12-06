@@ -8,6 +8,7 @@ void stateOpen(){
     light(LED_TIME, true);
     soundPlay(SND_GATE_OPEN, true, 5000);
     setGateAnimation(DOUBLE_SPIN, getColor(128,128,255), getColor(128,255, 128), 50);
+    hideTimeSelect();
   }
   
   if (readButtonPress(BTN_RESET)){

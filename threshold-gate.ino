@@ -33,7 +33,7 @@ void loop()
 {
   readButtons(); // check the state of all buttons
   runState(); // Run the state machine
-  countdown(); // Run the countdown timer
+  timerLoop(); // Run the countdown timer
   controlLightsPulse(); // calculate button lights pulse
   controlLightsDisplay(); // turn on lights
   loopSound();  // loop active sound

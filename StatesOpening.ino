@@ -15,6 +15,7 @@ void stateCountdown(){
     soundStop();
     soundPlay(SND_COUNTDOWN_START, false, 0);
     countDownSoundStarted = false;
+    disableTimeSelect();
   }
   
   if ((millis() - stateTimer) > 3363 && !countDownSoundStarted){
@@ -27,9 +28,9 @@ void stateCountdown(){
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_OPEN)){
     if (demoMode){
-      timerSetSeconds(30); // 30*60
+      timerSetSeconds(30);
     } else {
-      timerSetSeconds(30*60); // 30 mins 
+      timerSetMillis(getTimeSelected()); 
     }
     soundStop();
     changeState(STATE_OPEN);
@@ -46,7 +47,7 @@ void stateOpening(){
     if (demoMode){
       timerSetSeconds(30); 
     } else {
-      timerSetSeconds(30*60); // 30 mins 
+      timerSetMillis(getTimeSelected()); 
     }
     timerStart();
     light(LED_RESET, true);
@@ -56,6 +57,7 @@ void stateOpening(){
     soundStop();
     soundPlay(SND_GATE_OPENING, false, 0);
     setGateAnimation(COMET, getColor(255,255, 255), 60);
+    hideTimeSelect();
   }
   
   if (readButtonPress(BTN_RESET)){
@@ -63,9 +65,9 @@ void stateOpening(){
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_OPEN)){
     if (demoMode){
-      timerSetSeconds(10); 
+      timerSetSeconds(30); 
     } else {
-      timerSetSeconds(300);
+      timerSetMillis(getTimeSelected());
     }
     changeState(STATE_OPEN);
   } else if (readButtonPress(BTN_CLOSE)){

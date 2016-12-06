@@ -32,7 +32,8 @@
 #define PIN_OPEN 11
 #define PIN_HQ_PAUSE 12
 #define PIN_CLOSE 13
-#define PIN_SOUND_RST 15
+#define PIN_TIME_SELECT 0 // Analog 0
+#define PIN_SOUND_RST 15 // Analog 1
 
 // Buttons
 #define BTN_RESET 0
