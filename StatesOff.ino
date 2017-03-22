@@ -40,12 +40,17 @@ void stateGateOff(){
     light(LED_PAUSE, false);
     light(LED_TIME, false);
     soundPlay(SND_GATE_OFF, true, 14100);
+    setGateElements(8);
     setGateAnimation(PULSE, getColor(255,0,0));
     showTimeSelect();
     enableTimeSelect();
   }
  
   if (readButtonPress(BTN_RESET)){
+    gateType = GATE_MISSION;
+    changeState(STATE_COUNTDOWN);
+  } else if (readButtonPress(BTN_PAUSE)){
+    gateType = GATE_BATTLE;
     changeState(STATE_COUNTDOWN);
   } else if (readButtonPress(BTN_OPEN)){
    if (demoMode){

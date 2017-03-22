@@ -7,6 +7,8 @@ void stateClosing(){
     light(LED_TIME, false);
     soundStop();
     soundPlay(SND_GATE_CLOSING, false, 0);
+    setGateClockwise(false);
+    setGateElements(8);
     setGateAnimation(COMET, getColor(255,32, 32), 60);
   }
   
@@ -31,6 +33,8 @@ void stateClosingEmergency(){
     timerStop();
     soundStop();
     soundPlay(SND_GATE_CLOSING_EMERGENCY, false, 0);
+    setGateClockwise(false);
+    setGateElements(8);
     setGateAnimation(COMET, getColor(255,32, 32), 60);
   }
   

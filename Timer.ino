@@ -37,6 +37,7 @@ boolean enableSelect = false;
 void initTimer(void){
    mainTimer.begin(0x70);
    inputTimer.begin(0x71);
+   inputTimer.setBrightness(7);
 }
 
 // Explicitly set a timer

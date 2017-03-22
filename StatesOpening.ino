@@ -49,6 +49,10 @@ void stateOpening(){
     } else {
       timerSetMillis(getTimeSelected()); 
     }
+    
+    if (getTimeSelected() == -1){
+      gateType = GATE_TRANSIT;
+    }
     timerStart();
     light(LED_RESET, true);
     light(LED_CLOSE, true);
@@ -56,6 +60,8 @@ void stateOpening(){
     light(LED_TIME, true);
     soundStop();
     soundPlay(SND_GATE_OPENING, false, 0);
+    setGateClockwise(true);
+    setGateElements(8);
     setGateAnimation(COMET, getColor(255,255, 255), 60);
     hideTimeSelect();
   }

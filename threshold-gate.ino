@@ -11,6 +11,8 @@
 // Demo mode
 boolean demoMode = false;
 
+byte gateType = GATE_MISSION;
+
 void setup()
 {
   // Initialize Lights

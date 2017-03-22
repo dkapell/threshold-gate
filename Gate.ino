@@ -36,10 +36,15 @@ long pulseTime = 1500;
 byte pulseMaxBrightness = 255;
 byte pulseMinBrightness = 8;
 
+byte gateElements = 4;
+boolean gateClockwise = true;
+
 byte gateLightsIncreasing;
 
 uint32_t gateActiveColor;
 uint32_t gateActiveColor2;
+
+boolean gateWhitePulse = false;
 
 boolean animationTimer = false;
 
@@ -134,5 +139,29 @@ byte getBlue(uint32_t color){
 
 void setGatePixel(int pixel, RGB clr){
     strip.setPixelColor(pixel, clr.r, clr.g, clr.b);
+}
+
+void setGateElements(byte n){
+  gateElements = n;
+}
+
+byte getGateElements(void){
+  return gateElements;
+}
+
+void setGateClockwise(boolean b){
+  gateClockwise = b;
+} 
+
+boolean getGateClockwise(void){
+  return gateClockwise;
+}
+
+void setGateWhitePulse(boolean b){
+  gateWhitePulse = b;
+} 
+
+boolean getGateWhitePulse(void){
+  return gateWhitePulse;
 }
 

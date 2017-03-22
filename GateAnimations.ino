@@ -2,8 +2,13 @@
 
 void rainbow() {
   gateAnimationCycle = ++gateAnimationCycle % 255;
+  
   for(int i=0; i<strip.numPixels(); i++) {
-    strip.setPixelColor(i, Wheel((i+gateAnimationCycle) & 255));
+    if (gateClockwise){
+      strip.setPixelColor(i, Wheel((i+gateAnimationCycle) & 255));
+    } else {
+      strip.setPixelColor(strip.numPixels() - i, Wheel((i+gateAnimationCycle) & 255));
+    }
   }
   strip.show();
   
@@ -11,7 +16,11 @@ void rainbow() {
 
 void colorWipe() {
   if(gatePixelIndex < strip.numPixels()){
-    strip.setPixelColor(gatePixelIndex, gateActiveColor);
+    if (!gateClockwise){
+      strip.setPixelColor(gatePixelIndex, gateActiveColor);
+    } else {
+      strip.setPixelColor(strip.numPixels() - gatePixelIndex, gateActiveColor);
+    }
     strip.show();
     gatePixelIndex++;
   } else {
@@ -32,7 +41,11 @@ void doubleWipe(){
 
 void wipeOff() {
   if(gatePixelIndex < strip.numPixels()){
-    strip.setPixelColor(gatePixelIndex, 0);
+    if (!gateClockwise){
+      strip.setPixelColor(gatePixelIndex, 0);
+    } else {
+      strip.setPixelColor(strip.numPixels() - gatePixelIndex, 0);
+    }
     strip.show();
     gatePixelIndex++;
   } else {
@@ -43,15 +56,19 @@ void wipeOff() {
 
 
 void spin(){
-  gateAnimationCycle = ++gateAnimationCycle % (strip.numPixels()/GATE_ELEMENTS);
+  gateAnimationCycle = ++gateAnimationCycle % (strip.numPixels()/gateElements);
   for(int i=0; i<strip.numPixels(); i++) {
-    setGatePixel(i, GateColor(i, 255)); 
+    if (!gateClockwise){
+      setGatePixel(i, GateColor(i, 255)); 
+    } else {
+      setGatePixel(strip.numPixels() - i, GateColor(i, 255)); 
+    }
   }
   strip.show();
 }
 
 void doubleSpin(){
-  int chunkLength = strip.numPixels()/(GATE_ELEMENTS/2);
+  int chunkLength = strip.numPixels()/(gateElements/2);
   gateAnimationCycle = ++gateAnimationCycle % chunkLength;
 
   int offset = chunkLength-gateAnimationCycle;
@@ -63,10 +80,16 @@ void doubleSpin(){
     int colorIndex = (i +(offset))  % (chunkLength);
     int pulseIndex = (i+(quarterChunk)) % (halfChunk);
     
+    int ledIndex = i;
+    
+    if (!gateClockwise){
+      ledIndex = strip.numPixels() - i;
+    }
+    
     if (colorIndex  < halfChunk){
-      setGatePixel(i, GateColor(pulseIndex, 255, cycleIndex, gateActiveColor));
+      setGatePixel(ledIndex, GateColor(pulseIndex, 255, cycleIndex, gateActiveColor));
     } else {
-      setGatePixel(i, GateColor(pulseIndex, 255, cycleIndex, gateActiveColor2));
+      setGatePixel(ledIndex, GateColor(pulseIndex, 255, cycleIndex, gateActiveColor2));
     }
   }
   strip.show();
@@ -96,10 +119,14 @@ void pulse(){
 }
 
 void comet(){
-  gateAnimationCycle = ++gateAnimationCycle % (strip.numPixels()/GATE_ELEMENTS);
+  gateAnimationCycle = ++gateAnimationCycle % (strip.numPixels()/gateElements);
   
   for(int i=0; i<strip.numPixels(); i++) {
-    setGatePixel(i, CometColor(i, 255));
+    if (!gateClockwise){
+      setGatePixel(i, CometColor(i, 255));
+    } else {
+      setGatePixel(strip.numPixels() - i, CometColor(i, 255));
+    }
   }
   strip.show();
  
@@ -116,7 +143,7 @@ RGB GateColor(int GatePos, byte brightness, uint32_t color){
 }
 
 RGB GateColor(int GatePos, byte brightness, int cycle, uint32_t color){
-  int chunkSize = strip.numPixels() / GATE_ELEMENTS;
+  int chunkSize = strip.numPixels() / gateElements;
   int index = GatePos % chunkSize;
   int diffPos = cycle - index;
   int diffNeg = (chunkSize + cycle) - index;
@@ -133,9 +160,15 @@ RGB GateColor(int GatePos, byte brightness, int cycle, uint32_t color){
   byte blue = 0;
   
   if (index == cycle){
-    red = gateRed;
-    green = gateGreen;
-    blue = gateBlue;
+    if(gateWhitePulse){
+      red = 255;
+      green = 255;
+      blue = 255;
+    } else {
+      red = gateRed;
+      green = gateGreen;
+      blue = gateBlue;
+    }
     
   } else if (diff < 5){
     int diffFade = (diff*3);
@@ -168,7 +201,7 @@ RGB GateColor(int GatePos, byte brightness, int cycle, uint32_t color){
 }
 
 RGB CometColor(int GatePos, byte brightness){
-  int chunkSize = strip.numPixels()/GATE_ELEMENTS;
+  int chunkSize = strip.numPixels()/gateElements;
   int index = GatePos % chunkSize;
   int currentLitPixel = gateAnimationCycle;
   

@@ -7,7 +7,26 @@ void stateOpen(){
     light(LED_PAUSE, true);
     light(LED_TIME, true);
     soundPlay(SND_GATE_OPEN, true, 5000);
-    setGateAnimation(DOUBLE_SPIN, getColor(128,128,255), getColor(128,255, 128), 50);
+    switch(gateType){
+      case GATE_MISSION:
+        setGateElements(2);
+        setGateClockwise(true);
+        setGateAnimation(SPIN, getColor(0,255,0), 50);
+        break;
+          
+      case GATE_BATTLE:
+        setGateElements(4);
+        setGateClockwise(false);
+        setGateAnimation(SPIN, getColor(0,0,255), 50);
+        break;
+      
+      case GATE_TRANSIT:
+        setGateElements(8);
+        setGateClockwise(true);
+        setGateAnimation(DOUBLE_SPIN, getColor(128,128,255), getColor(128,255, 128), 50);
+        break;
+    }
+        
     hideTimeSelect();
   }
   

@@ -80,3 +80,8 @@ RGB GateColor(int GatePos, byte brightness);
 RGB GateColor(int GatePos, byte brightness, uint32_t color);
 RGB GateColor(int GatePos, byte brightness, int cycle, uint32_t color);
 RGB CometColor(int GatePos, byte brightness);
+
+// Gate Types
+#define GATE_MISSION 0
+#define GATE_BATTLE 1
+#define GATE_TRANSIT 2
