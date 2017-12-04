@@ -7,7 +7,7 @@ void rainbow() {
     if (gateClockwise){
       strip.setPixelColor(i, Wheel((i+gateAnimationCycle) & 255));
     } else {
-      strip.setPixelColor(strip.numPixels() - i, Wheel((i+gateAnimationCycle) & 255));
+      strip.setPixelColor((strip.numPixels() - 1) - i, Wheel((i+gateAnimationCycle) & 255));
     }
   }
   strip.show();
@@ -19,7 +19,7 @@ void colorWipe() {
     if (!gateClockwise){
       strip.setPixelColor(gatePixelIndex, gateActiveColor);
     } else {
-      strip.setPixelColor(strip.numPixels() - gatePixelIndex, gateActiveColor);
+      strip.setPixelColor((strip.numPixels() - 1) - gatePixelIndex, gateActiveColor);
     }
     strip.show();
     gatePixelIndex++;
@@ -44,7 +44,7 @@ void wipeOff() {
     if (!gateClockwise){
       strip.setPixelColor(gatePixelIndex, 0);
     } else {
-      strip.setPixelColor(strip.numPixels() - gatePixelIndex, 0);
+      strip.setPixelColor((strip.numPixels() - 1) - gatePixelIndex, 0);
     }
     strip.show();
     gatePixelIndex++;
@@ -61,7 +61,7 @@ void spin(){
     if (!gateClockwise){
       setGatePixel(i, GateColor(i, 255)); 
     } else {
-      setGatePixel(strip.numPixels() - i, GateColor(i, 255)); 
+      setGatePixel((strip.numPixels()-1) - i, GateColor(i, 255)); 
     }
   }
   strip.show();
@@ -83,7 +83,7 @@ void doubleSpin(){
     int ledIndex = i;
     
     if (!gateClockwise){
-      ledIndex = strip.numPixels() - i;
+      ledIndex = (strip.numPixels() -1) - i;
     }
     
     if (colorIndex  < halfChunk){
@@ -125,7 +125,7 @@ void comet(){
     if (!gateClockwise){
       setGatePixel(i, CometColor(i, 255));
     } else {
-      setGatePixel(strip.numPixels() - i, CometColor(i, 255));
+      setGatePixel((strip.numPixels() - 1) - i, CometColor(i, 255));
     }
   }
   strip.show();

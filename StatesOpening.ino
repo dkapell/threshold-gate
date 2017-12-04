@@ -3,7 +3,7 @@ void stateCountdown(){
   if (!stateStarted){
     stateStarted = true;
     if (demoMode){
-      timerSetSeconds(20); 
+      timerSetSeconds(10); 
     } else {
       timerSetSeconds(5 * 60); // 5 minutes
     }
@@ -27,11 +27,7 @@ void stateCountdown(){
     soundStop();
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_OPEN)){
-    if (demoMode){
-      timerSetSeconds(30);
-    } else {
-      timerSetMillis(getTimeSelected()); 
-    }
+    timerSetMillis(getTimeSelected()); 
     soundStop();
     changeState(STATE_OPEN);
   }
@@ -44,11 +40,7 @@ void stateCountdown(){
 void stateOpening(){
   if (!stateStarted){
     stateStarted = true;
-    if (demoMode){
-      timerSetSeconds(30); 
-    } else {
-      timerSetMillis(getTimeSelected()); 
-    }
+    timerSetMillis(getTimeSelected()); 
     
     if (getTimeSelected() == -1){
       gateType = GATE_TRANSIT;
@@ -70,11 +62,6 @@ void stateOpening(){
     soundStop();
     changeState(STATE_GATE_OFF);
   } else if (readButtonPress(BTN_OPEN)){
-    if (demoMode){
-      timerSetSeconds(30); 
-    } else {
-      timerSetMillis(getTimeSelected());
-    }
     changeState(STATE_OPEN);
   } else if (readButtonPress(BTN_CLOSE)){
     changeState(STATE_CLOSING_EMERGENCY);

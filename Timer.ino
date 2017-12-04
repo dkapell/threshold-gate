@@ -42,7 +42,11 @@ void initTimer(void){
 
 // Explicitly set a timer
 void timerSetSeconds(long seconds){
-  millisRemaining = seconds * 1000;
+  if (seconds == -1){
+    millisRemaining = -1;
+  } else {
+    millisRemaining = seconds * 1000;
+  }
   oldSeconds = seconds;
   displayTime(millisRemaining);
   timerDelta = 0;
@@ -50,7 +54,9 @@ void timerSetSeconds(long seconds){
 
 void timerSetMillis(long ms){
   millisRemaining = ms;
-  oldSeconds = ms/1000;
+  if (ms > 0){
+    oldSeconds = floor(ms/1000);
+  }
   displayTime(millisRemaining);
   timerDelta = 0;
 }

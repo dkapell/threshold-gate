@@ -53,13 +53,9 @@ void stateGateOff(){
     gateType = GATE_BATTLE;
     changeState(STATE_COUNTDOWN);
   } else if (readButtonPress(BTN_OPEN)){
-   if (demoMode){
-      timerSetSeconds(30); // 30*60
-    } else {
-      timerSetMillis(getTimeSelected()); 
-    }
+    timerSetMillis(getTimeSelected()); 
     soundStop();
-    changeState(STATE_OPEN);
+    changeState(STATE_OPENING);
   }
 }
 
